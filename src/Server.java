@@ -39,16 +39,7 @@ public class Server {
         }
     }
 
-    public static void main(String[] args) throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        System.out.println(dateFormat.format(date)); //2016/11/16 12:08:43
-        String userInput = "06/04/2019 15:00:00";
-        Date userDate;
-        userDate = dateFormat.parse(userInput);
-        long diff = userDate.getTime() - date.getTime();
-        System.out.println(diff);
-
+    public static void main(String[] args){
         new Server();
     }
 }

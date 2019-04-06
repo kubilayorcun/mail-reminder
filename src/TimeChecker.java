@@ -20,13 +20,15 @@ public class TimeChecker {
 class timerJob extends TimerTask {
     DatabaseOperations databaseOperations = new DatabaseOperations();
     MailSender mailSender = new MailSender();
+
     @Override
     public void run() {
         Date currentDate = new Date();
-        System.out.println(Thread.currentThread().getName() + " the task has executed successfully " + currentDate);
+        Thread.currentThread().setName("Reminder checker");
+        System.out.println(Thread.currentThread().getName() + " checked the database at: " + currentDate);
         SimpleDateFormat formatter  = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         try {
-            System.out.println(databaseOperations.getClosestReminder());
+            System.out.println("Closest reminder: "+databaseOperations.getClosestReminder());
             Date closestReminderDate = formatter.parse(databaseOperations.getClosestReminder());
 
             // Check if reminder's time has came or not :
@@ -47,6 +49,16 @@ class timerJob extends TimerTask {
         }
 
 
+
+    }
+}
+
+class ReminderThread extends Thread {
+        DatabaseOperations dbOperations = new DatabaseOperations();
+        MailSender mailSender = new MailSender();
+
+    @Override
+    public void run() {
 
     }
 }
