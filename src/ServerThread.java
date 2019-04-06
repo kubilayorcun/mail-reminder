@@ -27,7 +27,7 @@ public class ServerThread extends Thread {
 
                 // insert incoming info to database @Reminders table.
                 databaseOperations.connectToDatabase();
-                databaseOperations.insertReminder(mailInfoArray[0] , mailInfoArray[1] , mailInfoArray[2] , mailInfoArray[3]);
+                databaseOperations.insertReminder(mailInfoArray[0] , mailInfoArray[1] , mailInfoArray[2] , mailInfoArray[3] , mailInfoArray[4]);
                 databaseOperations.closeConnection();
                 break;
             }

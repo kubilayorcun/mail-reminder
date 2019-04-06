@@ -37,10 +37,16 @@ class timerJob extends TimerTask {
                 ArrayList<String> reminderInfo = databaseOperations.getDataOfReminder(databaseOperations.getClosestReminder());
 
                 // Send mail to registered reminder.
-                mailSender.sendMail(reminderInfo.get(0), reminderInfo.get(1), reminderInfo.get(2));
+                mailSender.sendMail(reminderInfo.get(1), reminderInfo.get(2), reminderInfo.get(3));
+                System.out.println();
+                System.out.println(reminderInfo.get(4));
+                System.out.println();
+                databaseOperations.setIsSent(reminderInfo.get(4));
+                // For the sake of simulating sending sms notification:
+                System.out.println("A SMS notification is sent to number : [with the same content of the mail]" + reminderInfo.get(0));
 
                 // Delete reminder to prevent double mailing.
-                databaseOperations.deleteReminder(databaseOperations.getClosestReminder());
+
 
             }
 
@@ -49,16 +55,6 @@ class timerJob extends TimerTask {
         }
 
 
-
-    }
-}
-
-class ReminderThread extends Thread {
-        DatabaseOperations dbOperations = new DatabaseOperations();
-        MailSender mailSender = new MailSender();
-
-    @Override
-    public void run() {
 
     }
 }

@@ -27,6 +27,8 @@ public class Client {
                 reminderInfoArray.clear();
 
                 System.out.println("Please provide the reminder data as follows:");
+                System.out.println("Phone number: ");
+                reminderInfoArray.add(scan.next());
                 System.out.println("Mail Address: ");
                 reminderInfoArray.add(scan.next());
                 System.out.println("Subject: ");

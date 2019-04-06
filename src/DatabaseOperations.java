@@ -9,10 +9,12 @@ public class DatabaseOperations {
         connectToDatabase();
         String createQuestionsTable = "CREATE TABLE IF NOT EXISTS Reminders (\n"
                 + " id integer primary key,\n"
+                + " phone text not null,\n"
                 + " mail text not null,\n"
                 + " subject text not null,\n"
                 + " content text not null,\n"
-                + " reminder text not null\n"
+                + " reminder text not null,\n"
+                + " isSent text default '0'\n"
                 + ");";
         Statement statement;
         try {
@@ -43,15 +45,16 @@ public class DatabaseOperations {
 
     }
 
-    public void insertReminder(String mail , String subject, String content, String reminder) {
-        String sql = "INSERT INTO Reminders(mail,subject,content,reminder) VALUES(?,?,?,?)";
+    public void insertReminder(String phone, String mail , String subject, String content, String reminder) {
+        String sql = "INSERT INTO Reminders(phone,mail,subject,content,reminder) VALUES(?,?,?,?,?)";
 
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, mail);
-            pstmt.setString(2, subject);
-            pstmt.setString(3, content);
-            pstmt.setString(4, reminder);
+            pstmt.setString(1, phone);
+            pstmt.setString(2, mail);
+            pstmt.setString(3, subject);
+            pstmt.setString(4, content);
+            pstmt.setString(5, reminder);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -59,7 +62,7 @@ public class DatabaseOperations {
     }
 
     public String getClosestReminder() {
-        String query = "SELECT reminder from Reminders ORDER BY reminder DESC ";
+        String query = "SELECT reminder from Reminders WHERE isSent = '0' ORDER BY reminder DESC ";
         String closestDate = null;
         try {
             Statement statement = connection.createStatement();
@@ -75,34 +78,38 @@ public class DatabaseOperations {
         }
     }
 
-    public void deleteReminder(String reminder){
-        String query="DELETE FROM Reminders WHERE reminder = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1 , reminder);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public ArrayList<String> getDataOfReminder(String reminder){
         ArrayList<String> reminderInfo = new ArrayList<>();
-        String query = "SELECT * FROM Reminders WHERE reminder = ?";
+        String query = "SELECT * FROM Reminders WHERE reminder = ? AND isSent = '0'";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,reminder);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
+                reminderInfo.add(resultSet.getString("phone"));
                 reminderInfo.add(resultSet.getString("mail"));
                 reminderInfo.add(resultSet.getString("subject"));
                 reminderInfo.add(resultSet.getString("content"));
+                reminderInfo.add(Integer.toString(resultSet.getInt("id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return reminderInfo;
+    }
+
+    public void setIsSent(String id){
+        String query = "UPDATE Reminders SET isSent = '1' WHERE id = ?";
+
+        try {
+            PreparedStatement preparedStatement  = connection.prepareStatement(query);
+            preparedStatement.setString(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
