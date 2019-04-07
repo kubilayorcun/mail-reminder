@@ -8,36 +8,46 @@ import java.awt.*;
 import java.util.Random;
 
 public class MailSender {
-    Session session;
-    int verificationCode;
+    private Session session;
+    private int verificationCode;
 
 
     public MailSender(){
-
+        // Credentials for mailClient
         final String username="kubilayorcun5@gmail.com";
         final String password = "anfbghjsrgty";
 
+        // Set props of the mail client.
         Properties props = new Properties();
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.auth" , "true");
         props.put("mail.smtp.host" , "smtp.gmail.com");
         props.put("mail.smtp.port","587");
 
+        // Authenticate credentials
         Authenticator authenticator = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username,password);
             }
         };
+
+        // Initialize mail client session.
         session = Session.getDefaultInstance(props , authenticator);
 
     }
 
+    /** **
+     *
+     * @param mail mail of the recipient.
+     * @param subject subject of the mail.
+     * @param content content of the mail.
+     */
     public void sendMail(String mail , String subject , String content){
         Message mailMessage = new MimeMessage(session);
         try {
             mailMessage.setRecipients(Message.RecipientType.TO , InternetAddress.parse(mail));
-            mailMessage.setFrom(new InternetAddress(mail));
+            mailMessage.setFrom(new InternetAddress("kubilayorcun5@gmail.com"));
             mailMessage.setSubject(subject);
             mailMessage.setContent(content , "text/html; charset=utf-8");
             Transport.send(mailMessage);
@@ -46,7 +56,12 @@ public class MailSender {
         }
     }
 
+    /**
+     *
+     * @param recipient mail receiver's mail address.
+     */
     public void sendConfirmationMail(String recipient) {
+        // Create a one time password.(OTP)
         verificationCode = (int)(Math.random() * (9999-1000)) + 1;
 
         Message message = new MimeMessage(session);

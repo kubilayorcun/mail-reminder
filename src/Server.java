@@ -4,32 +4,33 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.Buffer;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.TimerTask;
 
 public class Server {
-    BufferedReader reader;
-    PrintWriter writer;
-    ServerSocket serverSocket;
-    DatabaseOperations databaseOperations;
-    TimeChecker timeChecker;
+
+    // For in-class use, initialize global references.
+    private BufferedReader reader;
+    private ServerSocket serverSocket;
+    private DatabaseOperations databaseOperations;
+    private TimeChecker timeChecker;
+
     public Server(){
         try {
+            // Start timeChecker thread in order to start checking reminders in database table 'Reminders'.
             timeChecker = new TimeChecker();
 
             databaseOperations = new DatabaseOperations();
             serverSocket = new ServerSocket(5000);
             while (true){
+
+                // Server instance gets stuck at the accept() method. If any connection occurs
+                // moves on to execute the next line. After that because of the while loop, comes back to accept() for waiting for new incoming connections.
                 Socket socket = serverSocket.accept();
+
                 reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                writer = new PrintWriter(socket.getOutputStream());
-                ServerThread serverThread = new ServerThread(reader , writer , socket);
+
+                // Instantiate a serverThread object with the respective streams and socket. Which will listen for one client.
+                ServerThread serverThread = new ServerThread(reader , socket);
+                // Invoke serverThread
                 serverThread.start();
             }
 

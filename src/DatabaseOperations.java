@@ -5,6 +5,7 @@ public class DatabaseOperations {
 
     private Connection connection;
 
+    // Initialize tables, connect to database.
     public DatabaseOperations() {
         connectToDatabase();
         String createQuestionsTable = "CREATE TABLE IF NOT EXISTS Reminders (\n"
@@ -33,6 +34,7 @@ public class DatabaseOperations {
         }
     }
 
+    // Close database connection.
     public void closeConnection() {
         try {
             connection.close();
@@ -41,18 +43,18 @@ public class DatabaseOperations {
         }
     }
 
-    public boolean connectToDatabase() {
+    // Connect to database.
+    public void connectToDatabase() {
         try {
             String connectionUrl = "jdbc:sqlite:mailReminderApp.db";
             connection = DriverManager.getConnection(connectionUrl);
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
 
     }
 
+    // Insert new reminder into Reminders table
     public void insertReminder(String phone, String mail , String subject, String content, String reminder) {
         String sql = "INSERT INTO Reminders(phone,mail,subject,content,reminder) VALUES(?,?,?,?,?)";
 
@@ -69,6 +71,12 @@ public class DatabaseOperations {
         }
     }
 
+    /**
+     * Three important things to fetch closest reminder from table:
+     * 1. Just get the @reminder field from table.
+     * 2. Check the isSent value. (Should be 0, in order to get notSent reminder mails.)
+     * 3. Order the query result as DESC (descending) to get the closest timed reminder.
+     * **/
     public String getClosestReminder() {
         String query = "SELECT reminder from Reminders WHERE isSent = '0' ORDER BY reminder DESC ";
         String closestDate = null;
@@ -86,7 +94,11 @@ public class DatabaseOperations {
         }
     }
 
-
+    /**
+     * Fetch the data of the passed @reminder.
+     * isSent check is mandatory, in order the fetch notSent reminder.
+     * Also 'id' field is fetched, to set the isSet value of the reminder to '1' after sending the email.
+     * **/
     public ArrayList<String> getDataOfReminder(String reminder){
         ArrayList<String> reminderInfo = new ArrayList<>();
         String query = "SELECT * FROM Reminders WHERE reminder = ? AND isSent = '0'";
@@ -108,6 +120,7 @@ public class DatabaseOperations {
         return reminderInfo;
     }
 
+    // Sets the passed id parameter's row's isSent attribute to '1'.
     public void setIsSent(String id){
         String query = "UPDATE Reminders SET isSent = '1' WHERE id = ?";
 
@@ -120,6 +133,7 @@ public class DatabaseOperations {
         }
     }
 
+    // Check if the user's password matches the mail entered.
     public boolean authenticateUser(String mail , String password){
         String query="SELECT password FROM Users WHERE mail = ?";
         String registeredPassword = "";
@@ -141,11 +155,12 @@ public class DatabaseOperations {
         return false;
     }
 
-
+    // Retrieve the passed 'mail' parameter's respective phone number in database.
     public String getUserPhone(String mail){
         String query = "SELECT phone FROM Users WHERE mail = ?";
 
         try {
+
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,mail);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -159,6 +174,7 @@ public class DatabaseOperations {
         return null;
     }
 
+    // Insert new user into the database.
     public void insertUser(String mail , String phone , String password){
         String query = "INSERT INTO Users(mail,phone,password) VALUES(?,?,?)";
 

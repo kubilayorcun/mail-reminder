@@ -6,12 +6,11 @@ import java.net.Socket;
 
 public class ServerThread extends Thread {
     BufferedReader reader;
-    PrintWriter writer;
     Socket socket;
     DatabaseOperations databaseOperations;
-    public ServerThread(BufferedReader reader , PrintWriter writer , Socket socket){
+    public ServerThread(BufferedReader reader , Socket socket){
         this.reader = reader;
-        this.writer = writer;
+
         this.socket = socket;
         databaseOperations = new DatabaseOperations();
     }
@@ -22,9 +21,10 @@ public class ServerThread extends Thread {
         String mailInfo = "";
         try {
             while ((mailInfo = reader.readLine()) != null){
+                // Parse incoming string data using '-' as regex.
                 String[] mailInfoArray = mailInfo.split("-");
 
-                // insert incoming info to database @Reminders table.
+                // Insert incoming info to database @Reminders table.
                 databaseOperations.connectToDatabase();
                 databaseOperations.insertReminder(mailInfoArray[0] , mailInfoArray[1] , mailInfoArray[2] , mailInfoArray[3] , mailInfoArray[4]);
                 databaseOperations.closeConnection();
