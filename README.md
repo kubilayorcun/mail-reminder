@@ -1,4 +1,11 @@
 # Mail Reminder
+
+:exclamation: This README document contains language choice:
+  - English [Starts with english section]
+  - Turkish [After english section ends, turkish will continue]
+
+:exclamation: There can be contextual inconsistencies between languages, but in overall
+the core concepts and fundamental parts are translated carefully.
 ## Definition
 This project is developed for the 'Atölye15 Internship Camp'. MailReminder's main function is 
 to provide the functionality of setting custom reminders to the user. Which will be sent to
