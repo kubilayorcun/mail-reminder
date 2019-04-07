@@ -10,7 +10,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Client {
-
+    // TODO : @kubilay create users and authentication
+    /** AND THEN YOU ARE DONE **/
     PrintWriter writer;
     Socket socket;
 
