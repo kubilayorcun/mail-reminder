@@ -88,11 +88,9 @@ To run the project:
 # E-posta Hatırlatıcı
 
 ## Tanım
-Bu proje Atölye15 Staj Kampı 2019 kapsamında verilmiş olan görevlerden birine ithafen geliştirilmiştir. Bu hatırla
-tıcının ana fonksiyonlarından birisi kullanıcının kendi tercihine göre hatırlatıcılar yaratabilmesidir. Bu hatırlatıcılar
- belirlenen zaman geldiği zaman sunucu tarafından otomatik olarak hatırlatıcıyı kaydetmiş olan 
- kullanıcıya gönderilir. Hatırlatıcını e-postanın başlığı ve içeriği tamamen kullanıcının girdisi ile oluşturulur.
- . Aynı zamanda bu uygulama kullanıcıyı her hatırlatıcı kurmak istediğinde tekrar e-posta adresi ve telefon girme zahmetinden
+Bu proje Atölye15 Staj Kampı 2019 kapsamında verilmiş olan görevlerden birine ithafen geliştirilmiştir. Bu uygulamanın ana fonksiyonlarından birisi kullanıcının kendi tercihine göre hatırlatıcılar yaratabilmesidir. 
+Bu hatırlatıcılar belirlenen içeriği önceden atanmış olan e-postalar zamanı geldiğinde sunucu tarafından otomatik olarak hatırlatıcıyı kaydetmiş olan 
+ kullanıcıya gönderilir. Hatırlatıcını e-postanın başlığı ve içeriği tamamen kullanıcının girdisi ile oluşturulur. Aynı zamanda bu uygulama kullanıcıyı her hatırlatıcı kurmak istediğinde tekrar e-posta adresi ve telefon girme zahmetinden
  kurtarmak adına bir Giriş/Kayıt sistemi de içermektedir.
 
 ### Yapısal Davranış
@@ -104,19 +102,19 @@ Sqlite kullanılmıştır.
 ### Ayrıntılı Anlatım
 
 - Bu projede 'Sunucu' ve 'İstemci' olmak üzere iki ana konsept fonksiyonları yerine getirmekten sorumludur.
-  - Sunucu: Sunucu daha önce kaydedilmiş olan hatırlatıcıları her 1 saniyede kontrol etmekle sorunludur, eğer bir hatırlatıcının
+  - Sunucu: Sunucu daha önce kaydedilmiş olan hatırlatıcıları her 1 saniyede kontrol etmekle sorumludur, eğer bir hatırlatıcının
   vakti gelirse sunucu o hatırlatıcının kaydında bulunan e-posta adresine gerekli e-postayı gönderir. E-postayı gönderdikten sonra 
   sunucu kullanılmış olan hatırlatıcının bulunduğu satırın 0/1 olarak tutulan değişkenini 1 (gönderildi) olarak günceller.
   Bütün bu operasyonlardan sonra sunucu veritabanındaki hatırlatıcıları kontrol etmeye devam eder. Aynı zamanda bütün bu sunucu tara
   fında gerçekleşen işlevsellikler, sunucu başlatıldığında yine sunucu tarafından başlatılan bir iş parçacığı (thread) tarafından 
   gerçekleştirilir.
   
-   - İstemci: İstemci çalıştırıldığından karşına 2 seçenek (Giriş/Kayıt) sunulur.
+   - İstemci: İstemci çalıştırıldığından karşısına 2 seçenek (Giriş/Kayıt) sunulur.
      - Giriş: Giriş işlemi sırasında kullanıcıdan giriş bilgileri istenir. Bilgiler veritabanı ile karşılaştırılarak kontrol edilir. 
-     Eğer işlem sonucunda bir tutarsızlık olmazsa kullanıcı hatırlatıcı girebileceği kısma yönlendirilir. Bütün bunlar istemci-tarafında 
+     Eğer işlem sonucunda bir tutarsızlık olmazsa kullanıcı hatırlatıcı girebileceği kısma yönlendirilir. Bütün bunlar istemci tarafında 
      gerçekleştirilir.
      - Kayıt: Kayıt işlemi sırasında kullanıcıdan bilgileri tek tek alınır. Bütün bilgiler alındıktan sonra, bu bilgiler arasında olan
-     kullanıcının e-postasına bir adet 'Onay E-postası' gönderilir. Eğer sonrasında kullanıcı bu e-postanın içerisinde almış olmuş
+     kullanıcının e-postasına bir adet 'Onay E-postası' gönderilir. Eğer sonrasında kullanıcı bu e-postanın içerisinde almış olduğu
      onay kodunu doğru bir şekilde girerse kullanıcı sisteme kaydedilir ve uygulamanın en başına yönlendirilir.
 
 ### Proje Eleştirileri
@@ -124,8 +122,8 @@ Sqlite kullanılmıştır.
  - Her saniye hatılatıcılar kontrol ediliyor.
  - E-posta servisi sorunsuz bir şekilde çalışıyor.
  - Giriş/Kayıt aşamaları eklendi.
- - Çoklu işparçacığı (multithreaded) bir yapı kullanılarak paralellik sağlanmış oldu.
- - Çoklu kullanıcı desteği her bir kullanıcıya bir iş parçacığı (thread) atayarak sağlandı.
+ - Çoklu işparçacığı (multithreaded) yapısı kullanılarak paralellik sağlanmış oldu.
+ - Çoklu kullanıcı desteği ve paralellik her bir kullanıcıya bir iş parçacığı (thread) atayarak sağlandı.
  - Kayıt sırasında e-posta ile doğrulama sistemi eklendi. 
  - Sunucu açık olduğu sürece yeni bağlanma ihtimali olan kullanıcıları dinlemeye devam ediyor.
  - Sunucu tarafında hatırlatıcı zamanlarının kontrolü yine sunucu tarafından başlatılan bir iş parçacığına (thread) atandı. 
@@ -139,8 +137,8 @@ Sqlite kullanılmıştır.
  kapsamında bu şekilde gerçekleştirildi.
    - Çözüm: Bütün hatırlatıcıların her yeni hatırlatıcı geldiğinde veritabanına kaydedilmesi yerine dinamik şekilde bilgisayarın hafızasında
    tutulabilirler. Eğer bu durumda sunucu kapanırsa veya kapatılırsa dinamik verilerin tamamı kalıcı bir veritabanına veya dosyaya 
-   yazılabilir, böylece hiçbir kullanıcı sunucu minör çöküşler yaşasa dahi daha önce kurdukları hatırlatıcılarını kaybetmemiş olurlar.
-- Eğer veritabanında tam olarak aynı gün ve saatte ayaarlanmış olan hatırlatıcılar varsa bu hatırlatıcıların e-postaları gönderilmeye
+   yazılabilir, böylece hiçbir kullanıcı, sunucu minör çöküşler yaşasa dahi daha önce kurdukları hatırlatıcılarını kaybetmemiş olurlar.
+- Eğer veritabanında tam olarak aynı gün ve saatte ayarlanmış olan hatırlatıcılar varsa bu hatırlatıcıların e-postaları gönderilmeye
 çalışıldığı sırada, sıranın devamında gelmekte olan aynı saniyedeki hatırlatıcıların birkaç saniye gecikmesine sebep olabilirler. 
   - Çözüm: Bu hatırlatıcıların e-postalarını, hatırlatıcıları kontrol eden iş parçacığında (thread) göndermek yerine e-posta gönderme
   işlemi hatırlatıcıları kontrol eden iş parçacığı (thread) tarafından başka bir iş parçacığına (thread) atanabilir. Böylece küçük
@@ -156,8 +154,8 @@ Projeyi çalıştırmak için adımlar:
         cd ~
         git clone https://github.com/kubilayorcun/mail-reminder.git
         ```
- 2. Şimdi proje klasörünü (mail-reminder-master) herhangi bir Java destekleyen IDE açıp 'içeri aktar' diyerek açabilirsiniz.
- 3. IDE (Integrated Development Environment) burdan sonra, projeyi sizin için çalışır hale getirecektir.
+ 2. Şimdi proje klasörünü (mail-reminder-master) herhangi bir Java desteği bulunan IDE açıp 'içeri aktar' diyerek açabilirsiniz.
+ 3. IDE (Integrated Development Environment) buradan sonra, projeyi sizin için çalışır hale getirecektir.
  4. Öncelikle Server.java dosyasına gelip onu çalıştırın. (Çalıştırdığınız anda konsolda her saniye gerçekleşen kontrollerin çıktısını görmelisiniz.)
  5. Şimdi Login.java dosyasına gelip onu çalıştırın. (Buradan sonrası için .java dosyalarındaki yorum satırlarını okuyabilir, ya da bu README.md dosyasını referans alarak programı kullanabilirsiniz.)
 
