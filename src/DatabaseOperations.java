@@ -159,5 +159,19 @@ public class DatabaseOperations {
         return null;
     }
 
+    public void insertUser(String mail , String phone , String password){
+        String query = "INSERT INTO Users(mail,phone,password) VALUES(?,?,?)";
+
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setString(1, mail);
+            pstmt.setString(2, phone);
+            pstmt.setString(3, password);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

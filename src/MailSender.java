@@ -62,8 +62,8 @@ public class MailSender {
         }
     }
 
-    public int getVerificationCode() {
-        return verificationCode;
+    public String getVerificationCode() {
+        return Integer.toString(verificationCode);
     }
 
 
