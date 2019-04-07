@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6497bdfe-fbc0-4679-81e1-2198da53a591" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MailReminder/DatabaseOperations.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MailReminder/DatabaseOperations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MailReminder/MailSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MailReminder/MailSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,15 +74,15 @@
         <counts>
           <entry key="cell" value="734" />
           <entry key="java" value="9810" />
-          <entry key="md" value="2743" />
-          <entry key="txt" value="532" />
+          <entry key="md" value="4820" />
+          <entry key="txt" value="547" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="9809" />
-          <entry key="Markdown" value="2743" />
-          <entry key="PLAIN_TEXT" value="532" />
+          <entry key="Markdown" value="4820" />
+          <entry key="PLAIN_TEXT" value="547" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="734" />
         </counts>
@@ -181,8 +179,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="420">
-                <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+              <first_editor relative-caret-position="516">
+                <caret line="56" column="69" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
               </first_editor>
               <second_editor />
             </state>
@@ -300,7 +298,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554648770391" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554649376669" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -373,7 +371,7 @@
       <workItem from="1554586688150" duration="1531000" />
       <workItem from="1554588294069" duration="116000" />
       <workItem from="1554640479325" duration="2553000" />
-      <workItem from="1554643096001" duration="5090000" />
+      <workItem from="1554643096001" duration="6055000" />
     </task>
     <task id="LOCAL-00001" summary="date validation">
       <created>1554582559745</created>
@@ -410,11 +408,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554647449387</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="init README.md">
+      <created>1554649096423</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1554649096423</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26798000" />
+    <option name="totallyTimeSpent" value="27763000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -476,7 +481,8 @@
     <MESSAGE value="new login process init" />
     <MESSAGE value="login part is done&#10;- Authentication of user credentials&#10;- Passing inputted credentials to listening serverThread" />
     <MESSAGE value="registration part is done&#10;- Mail validation with verification code. &#10;- Register user via saving to database, after verified.&#10;- Returns user to initial login process." />
-    <option name="LAST_COMMIT_MESSAGE" value="registration part is done&#10;- Mail validation with verification code. &#10;- Register user via saving to database, after verified.&#10;- Returns user to initial login process." />
+    <MESSAGE value="init README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="init README.md" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/System.java">
@@ -573,8 +579,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="420">
-            <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+          <first_editor relative-caret-position="516">
+            <caret line="56" column="69" selection-start-line="56" selection-start-column="69" selection-end-line="56" selection-end-column="69" />
           </first_editor>
           <second_editor />
         </state>
