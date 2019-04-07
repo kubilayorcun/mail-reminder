@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/javaJars/javamail-1.4.5/mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/sqlite-jdbc-3.23.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/javaJars/jaf-1.1.1/activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +28,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/javaJars/sqlite-jdbc-3.23.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
