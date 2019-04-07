@@ -5,6 +5,8 @@
 :exclamation: There can be contextual inconsistencies between languages, but in overall
 the core concepts and fundamental parts are translated carefully.
 
+:exclamation: Feel free to check the code, you will see lots of detailed comment lines, telling about almost each line.
+
 # Mail Reminder
 
 ## Definition
