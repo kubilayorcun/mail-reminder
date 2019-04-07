@@ -14,24 +14,20 @@ public class Client {
     /** AND THEN YOU ARE DONE **/
     PrintWriter writer;
     Socket socket;
-
-    public Client() {
+    ArrayList<String> clientCredentials;
+    public Client(ArrayList<String> clientCredentials) {
+        this.clientCredentials = clientCredentials;
         try {
             Scanner scan = new Scanner(System.in);
             socket = new Socket("localhost", 5000);
             writer = new PrintWriter(socket.getOutputStream());
+            ArrayList<String> reminderInfoArray = new ArrayList<>();
+
 
             while (true) {
-
-                // Hold input info in an arraylist to send over socket later.
-                ArrayList<String> reminderInfoArray = new ArrayList<>();
                 reminderInfoArray.clear();
-
+                reminderInfoArray.addAll(clientCredentials);
                 System.out.println("Please provide the reminder data as follows:");
-                System.out.println("Phone number: ");
-                reminderInfoArray.add(scan.next());
-                System.out.println("Mail Address: ");
-                reminderInfoArray.add(scan.next());
                 System.out.println("Subject: ");
                 reminderInfoArray.add(scan.next());
                 System.out.println("Content: ");
@@ -47,7 +43,7 @@ public class Client {
 
                     reminderInfoArray.add(dateInput);
                     StringBuilder reminderInfo = new StringBuilder();
-
+                    System.out.println(reminderInfoArray);
                     // Concatenate input info to send all info at once.
                     for (String argument : reminderInfoArray) {
                         reminderInfo.append(argument).append("-");
@@ -82,11 +78,5 @@ public class Client {
         else return true;
 
     }
-
-
-    public static void main(String[] args) {
-
-        new Client();
-
-    }
+    
 }

@@ -21,15 +21,14 @@ public class ServerThread extends Thread {
 
         String mailInfo = "";
         try {
-            while (true){
-                mailInfo = reader.readLine();
+            while ((mailInfo = reader.readLine()) != null){
                 String[] mailInfoArray = mailInfo.split("-");
 
                 // insert incoming info to database @Reminders table.
                 databaseOperations.connectToDatabase();
                 databaseOperations.insertReminder(mailInfoArray[0] , mailInfoArray[1] , mailInfoArray[2] , mailInfoArray[3] , mailInfoArray[4]);
                 databaseOperations.closeConnection();
-                break;
+
             }
         } catch (IOException e) {
             e.printStackTrace();

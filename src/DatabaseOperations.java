@@ -16,10 +16,18 @@ public class DatabaseOperations {
                 + " reminder text not null,\n"
                 + " isSent text default '0'\n"
                 + ");";
+
+        String createUsersTable = "CREATE TABLE IF NOT EXISTS Users (\n"
+                + " id integer primary key,\n"
+                + " mail text not null,\n"
+                + " phone text not null,\n"
+                + " password text not null\n"
+                + ");";
         Statement statement;
         try {
             statement = connection.createStatement();
             statement.execute(createQuestionsTable);
+            statement.execute(createUsersTable);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,6 +118,45 @@ public class DatabaseOperations {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean authenticateUser(String mail , String password){
+        String query="SELECT password FROM Users WHERE mail = ?";
+        String registeredPassword = "";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1 , mail);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                registeredPassword = resultSet.getString("password");
+            }
+
+            if (registeredPassword.equals(password)) return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+    public String getUserPhone(String mail){
+        String query = "SELECT phone FROM Users WHERE mail = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,mail);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                return resultSet.getString("phone");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
