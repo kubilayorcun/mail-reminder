@@ -14,8 +14,8 @@ public class MailSender {
 
     public MailSender(){
         // Credentials for mailClient
-        final String username="kubilayorcun5@gmail.com";
-        final String password = "anfbghjsrgty";
+        final String username="reminderservice00@gmail.com";
+        final String password = "mailreminder123";
 
         // Set props of the mail client.
         Properties props = new Properties();
