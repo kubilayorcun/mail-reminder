@@ -38,8 +38,8 @@ which aims to save the user from trouble of inputting mail and phone number each
      then user is redirected to the initial login/register process and the credentials are registered successfully,
      otherwise user will be prompted with a error message.
 
-#### Project Critics
-##### What is done
+### Project Critics
+#### What is done
  - Reminder check at realtime (every 1 sec.) is done properly.
  - Mail client is up and running.
  - Login/register process is added.
@@ -49,7 +49,7 @@ which aims to save the user from trouble of inputting mail and phone number each
  - Server always listening for new client instances that may connect.
  - Server checks for reminders in a seperate thread which runs indefinitely.
 
-##### What could be done more
+#### What could be done more
  - Passwords are stored as plain text which is not a proper way to do this.
    - Solution: This could be done by using a symmetric or asymmetric encryption algorithm (AES,
     DES, RSA).
@@ -68,6 +68,21 @@ seconds of delay can occur since they are treated in an ordered fashion.
 - Authentication is done at the client-side which is not a realistic scenario in the real life. 
   - Solution: Credentials could be sent to the server over a socket within a TCP segment (to prevent data loss and corruption since TCP is a reliable, connection oriented protocol.), which then can be authenticated and the 
   result could be sent back to the client-side.
+
+### How to run ?
+To run the project:
+ 1. Download the repository
+    - You can download the repository as zip file and then extract it.
+    - Alternatively, open up a terminal and:
+    
+        ```
+        cd ~
+        git clone https://github.com/kubilayorcun/mail-reminder.git
+        ```
+ 2. Now import the project folder (mail-reminder-master) to an IDE (preferably Intellij IDEA)
+ 3. IDE will take care of the importing the JARS and other dependency/library related issues.
+ 4. First run Server.java class. (You should be able to see data checks every second in the console under Server.java)
+ 5. Now run the Login.java class. (After that you can refer to inline comments or this readme file to how to use the program.)
 
 ----------------------------------------------------------------------------
 # E-posta Hatırlatıcı
@@ -104,8 +119,8 @@ Sqlite kullanılmıştır.
      kullanıcının e-postasına bir adet 'Onay E-postası' gönderilir. Eğer sonrasında kullanıcı bu e-postanın içerisinde almış olmuş
      onay kodunu doğru bir şekilde girerse kullanıcı sisteme kaydedilir ve uygulamanın en başına yönlendirilir.
 
-#### Proje Eleştirileri
-##### Yapılanlar
+### Proje Eleştirileri
+#### Yapılanlar
  - Her saniye hatılatıcılar kontrol ediliyor.
  - E-posta servisi sorunsuz bir şekilde çalışıyor.
  - Giriş/Kayıt aşamaları eklendi.
@@ -115,7 +130,7 @@ Sqlite kullanılmıştır.
  - Sunucu açık olduğu sürece yeni bağlanma ihtimali olan kullanıcıları dinlemeye devam ediyor.
  - Sunucu tarafında hatırlatıcı zamanlarının kontrolü yine sunucu tarafından başlatılan bir iş parçacığına (thread) atandı. 
 
-##### Geliştirilebilecekler
+#### Geliştirilebilecekler
  - Kullanıcı parolaları olduğu gibi açık halde veritabanınca tutuluyor. Güvenlik açısından uygun bir yöntem değil.
    - Çözüm: Parolaları şifreleyerek veritabanına kaydetmek bir çözüm. Bu şifreleme işlemi ise simetrik (DES,AES) veya
    asimetrik (RSA) şifreleme algoritmalatı kullanılarak uygulanabilir.
@@ -130,6 +145,21 @@ Sqlite kullanılmıştır.
   - Çözüm: Bu hatırlatıcıların e-postalarını, hatırlatıcıları kontrol eden iş parçacığında (thread) göndermek yerine e-posta gönderme
   işlemi hatırlatıcıları kontrol eden iş parçacığı (thread) tarafından başka bir iş parçacığına (thread) atanabilir. Böylece küçük
   gecikmelerin önüne geçilebilir.
+  
+ ### Nasıl Çalıştırırım ?
+Projeyi çalıştırmak için adımlar:
+ 1. Projeyi bilgisayarınıza indirin.
+    - Projeyi zip dosyası olarak indirip, içindekileri çıkartabilirsiniz.
+    - Alternatif olarak, bir terminal açıp şu komutları çalıştırabilirsiniz:
+    
+        ```
+        cd ~
+        git clone https://github.com/kubilayorcun/mail-reminder.git
+        ```
+ 2. Şimdi proje klasörünü (mail-reminder-master) herhangi bir Java destekleyen IDE açıp 'içeri aktar' diyerek açabilirsiniz.
+ 3. IDE (Integrated Development Environment) burdan sonra, projeyi sizin için çalışır hale getirecektir.
+ 4. Öncelikle Server.java dosyasına gelip onu çalıştırın. (Çalıştırdığınız anda konsolda her saniye gerçekleşen kontrollerin çıktısını görmelisiniz.)
+ 5. Şimdi Login.java dosyasına gelip onu çalıştırın. (Buradan sonrası için .java dosyalarındaki yorum satırlarını okuyabilir, ya da bu README.md dosyasını referans alarak programı kullanabilirsiniz.)
 
 
 
